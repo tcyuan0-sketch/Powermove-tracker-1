@@ -131,13 +131,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 120px;
+            min-width: 140px;
         }
         
         .slider {
-            width: 100px;
-            height: 6px;
-            border-radius: 3px;
+            width: 120px;
+            height: 8px;
+            border-radius: 4px;
             background: linear-gradient(90deg, #ecf0f1, #bdc3c7);
             outline: none;
             cursor: pointer;
@@ -149,8 +149,8 @@
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 18px;
-            height: 18px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: linear-gradient(135deg, #3498db, #2980b9);
             cursor: pointer;
@@ -165,8 +165,8 @@
         }
         
         .slider::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: linear-gradient(135deg, #3498db, #2980b9);
             cursor: pointer;
@@ -187,12 +187,12 @@
         }
         
         .slider-label {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: #34495e;
-            margin-top: 4px;
+            margin-top: 6px;
             text-align: center;
-            min-height: 16px;
+            min-height: 18px;
             line-height: 1.2;
         }
         
@@ -284,10 +284,6 @@
             padding: 15px 12px;
             font-size: 1.1em;
             border-bottom: none;
-        }
-        
-        .grand-total-row {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
         }
         
         /* Button Styles */
@@ -842,7 +838,7 @@
                     tbody.appendChild(row);
                 });
 
-                // Add total rows
+                // Add transitions total row only
                 const totalRow = document.createElement('tr');
                 totalRow.classList.add('total-row');
                 totalRow.innerHTML = `
@@ -850,14 +846,6 @@
                     <td class="total-points" id="transitionsTotal">0</td>
                 `;
                 tbody.appendChild(totalRow);
-
-                const grandTotalRow = document.createElement('tr');
-                grandTotalRow.classList.add('total-row', 'grand-total-row');
-                grandTotalRow.innerHTML = `
-                    <td colspan="4"><strong>GRAND TOTAL</strong></td>
-                    <td class="total-points" id="grandTotal">0</td>
-                `;
-                tbody.appendChild(grandTotalRow);
             },
 
             calculateMaxPoints(move) {
@@ -958,12 +946,10 @@
             // Score Calculations
             calculateTotals() {
                 const powerMovesTotal = this.calculateSectionTotal('#powerMovesBody .total-points:not(#powerMovesTotal)');
-                const transitionsTotal = this.calculateSectionTotal('#transitionsBody .total-points:not(#transitionsTotal):not(#grandTotal)');
-                const grandTotal = powerMovesTotal + transitionsTotal;
+                const transitionsTotal = this.calculateSectionTotal('#transitionsBody .total-points:not(#transitionsTotal)');
 
                 this.updateElement('powerMovesTotal', powerMovesTotal.toFixed(1));
                 this.updateElement('transitionsTotal', transitionsTotal.toFixed(1));
-                this.updateElement('grandTotal', grandTotal.toFixed(1));
             },
 
             calculateSectionTotal(selector) {
@@ -979,7 +965,7 @@
 
             calculateFinalScore() {
                 const powerMovesTotal = this.calculateSectionTotal('#powerMovesBody .total-points:not(#powerMovesTotal)');
-                const transitionsTotal = this.calculateSectionTotal('#transitionsBody .total-points:not(#transitionsTotal):not(#grandTotal)');
+                const transitionsTotal = this.calculateSectionTotal('#transitionsBody .total-points:not(#transitionsTotal)');
                 const grandTotal = powerMovesTotal + transitionsTotal;
 
                 // Calculate max possible scores
@@ -992,8 +978,8 @@
                 this.updateElement('maxScore', totalMax.toFixed(1));
                 this.showElement('scoreDisplay');
 
-                // Generate analysis
-                this.generateAnalysis(powerMovesTotal, transitionsTotal, maxPowerMoves, maxTransitions);
+                // Generate analysis and show summary
+                this.generateAnalysis();
                 this.showElement('summarySection');
 
                 // Smooth scroll to score
