@@ -12,7 +12,7 @@
         }
         
         body {
-            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             min-height: 100vh;
             padding: 20px;
@@ -27,6 +27,7 @@
             overflow: hidden;
         }
         
+        /* Header Styles */
         .header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
@@ -48,12 +49,22 @@
             font-size: 1em;
             opacity: 0.9;
             font-weight: 500;
-            letter-spacing: 0.5px;
         }
         
+        /* Table Styles */
         .table-container {
             padding: 30px;
             overflow-x: auto;
+        }
+        
+        .section-title {
+            margin: 30px 0 20px 0;
+            color: #2c3e50;
+            font-size: 1.3em;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         
         table {
@@ -83,51 +94,20 @@
             vertical-align: middle;
         }
         
-        tr.basic:hover {
-            background: rgba(52, 152, 219, 0.15);
-        }
+        /* Row Styles by Category */
+        .basic { border-left: 3px solid #3498db; }
+        .intermediate { border-left: 3px solid #f39c12; }
+        .advanced { border-left: 3px solid #e74c3c; }
         
-        tr.intermediate:hover {
-            background: rgba(243, 156, 18, 0.15);
-        }
-        
-        tr.advanced:hover {
-            background: rgba(231, 76, 60, 0.15);
-        }
-        
-        .move-name.basic {
-            color: #2980b9;
-        }
-        
-        .move-name.intermediate {
-            color: #e67e22;
-        }
-        
-        .move-name.advanced {
-            color: #c0392b;
-        }
-        
-        .transition-basic {
-            background: rgba(52, 152, 219, 0.05);
-            border-left: 3px solid #3498db;
-        }
-        
-        .transition-intermediate {
-            background: rgba(243, 156, 18, 0.05);
-            border-left: 3px solid #f39c12;
-        }
-        
-        .transition-advanced {
-            background: rgba(231, 76, 60, 0.05);
-            border-left: 3px solid #e74c3c;
-        }
+        .basic:hover { background: rgba(52, 152, 219, 0.1); }
+        .intermediate:hover { background: rgba(243, 156, 18, 0.1); }
+        .advanced:hover { background: rgba(231, 76, 60, 0.1); }
         
         .move-name {
             font-weight: 700;
             color: #2c3e50;
             letter-spacing: 0.3px;
             cursor: pointer;
-            position: relative;
         }
         
         .move-name:hover {
@@ -138,27 +118,109 @@
         .base-points {
             font-weight: 700;
             color: #27ae60;
-            letter-spacing: 0.3px;
         }
         
-        select {
-            width: 80px;
-            padding: 8px;
-            border: 2px solid #bdc3c7;
-            border-radius: 4px;
-            background: white;
-            font-size: 14px;
+        .total-points {
+            font-weight: 700;
+            color: #e74c3c;
+            font-size: 1.05em;
+        }
+        
+        /* Slider Controls */
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 120px;
+        }
+        
+        .slider {
+            width: 100px;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #ecf0f1, #bdc3c7);
+            outline: none;
             cursor: pointer;
+            transition: all 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
             transition: all 0.2s ease;
         }
         
-        select:focus {
-            outline: none;
-            border-color: #3498db;
+        .slider::-webkit-slider-thumb:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: scale(1.1);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.5);
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
+            border: none;
+            transition: all 0.2s ease;
+        }
+        
+        .slider::-moz-range-thumb:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: scale(1.1);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.5);
+        }
+        
+        .slider:focus {
+            background: linear-gradient(90deg, #3498db, #2980b9);
             box-shadow: 0 0 8px rgba(52, 152, 219, 0.25);
         }
-
-        /* Rectangular Toggle Switch Styles */
+        
+        .slider-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #34495e;
+            margin-top: 4px;
+            text-align: center;
+            min-height: 16px;
+            line-height: 1.2;
+        }
+        
+        .form-slider {
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+        }
+        
+        .form-slider::-webkit-slider-thumb {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            box-shadow: 0 2px 6px rgba(243, 156, 18, 0.3);
+        }
+        
+        .form-slider::-webkit-slider-thumb:hover {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            box-shadow: 0 3px 10px rgba(243, 156, 18, 0.5);
+        }
+        
+        .form-slider::-moz-range-thumb {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            box-shadow: 0 2px 6px rgba(243, 156, 18, 0.3);
+        }
+        
+        .form-slider:focus {
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+            box-shadow: 0 0 8px rgba(243, 156, 18, 0.25);
+        }
+        
+        /* Toggle Switch */
         .toggle-switch {
             position: relative;
             width: 60px;
@@ -204,15 +266,14 @@
             color: white;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            opacity: 1;
         }
         
         .toggle-switch.active::after {
             content: 'YES';
             left: 6px;
-            opacity: 1;
         }
         
+        /* Total Row Styles */
         .total-row {
             background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%) !important;
             color: white !important;
@@ -222,38 +283,65 @@
         .total-row td {
             padding: 15px 12px;
             font-size: 1.1em;
+            border-bottom: none;
         }
         
-        .total-points {
-            font-weight: 700;
-            color: #e74c3c;
-            font-size: 1.05em;
-            letter-spacing: 0.3px;
+        .grand-total-row {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
         }
         
-        .calculate-score-btn {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin: 20px 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 30px;
             color: white;
-            padding: 25px;
-            text-align: center;
-            font-size: 1.6em;
-            font-weight: 800;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-            text-transform: uppercase;
             border: none;
+            border-radius: 4px;
+            font-size: 14px;
             cursor: pointer;
-            width: 100%;
             transition: all 0.3s ease;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            min-width: 150px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
             box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            font-size: 1.6em;
+            padding: 25px;
+            width: 100%;
+            margin-bottom: 20px;
         }
         
-        .calculate-score-btn:hover {
-            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
         }
         
+        .btn-info {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            box-shadow: 0 2px 8px rgba(127, 140, 141, 0.3);
+        }
+        
+        /* Score Display */
         .score-display {
             background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
             color: white;
@@ -266,6 +354,7 @@
             display: none;
         }
         
+        /* Summary Section */
         .summary-section {
             display: none;
             padding: 30px;
@@ -289,6 +378,7 @@
             font-weight: 500;
         }
         
+        /* Analysis Charts */
         .charts-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -313,6 +403,18 @@
             letter-spacing: 0.3px;
         }
         
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        .stat-row.basic { background: linear-gradient(90deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1)); }
+        .stat-row.intermediate { background: linear-gradient(90deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.1)); }
+        .stat-row.advanced { background: linear-gradient(90deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1)); }
+        
         .progress-bar {
             background: #ecf0f1;
             height: 20px;
@@ -323,81 +425,48 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #3498db, #2980b9);
             border-radius: 10px;
             transition: width 0.8s ease;
         }
         
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 8px 0;
-            padding: 8px 0;
-            border-bottom: 1px solid #ecf0f1;
-        }
+        .progress-bar.basic .progress-fill { background: linear-gradient(90deg, #3498db, #2980b9); }
+        .progress-bar.intermediate .progress-fill { background: linear-gradient(90deg, #f39c12, #e67e22); }
+        .progress-bar.advanced .progress-fill { background: linear-gradient(90deg, #e74c3c, #c0392b); }
         
-        .stat-row.basic {
-            background: linear-gradient(90deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-            border-left: 4px solid #3498db;
-            padding-left: 12px;
-        }
+        .stat-label { font-weight: 600; color: #34495e; }
+        .stat-value { font-weight: 700; color: #e74c3c; }
         
-        .stat-row.intermediate {
-            background: linear-gradient(90deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.1));
-            border-left: 4px solid #f39c12;
-            padding-left: 12px;
-        }
-        
-        .stat-row.advanced {
-            background: linear-gradient(90deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
-            border-left: 4px solid #e74c3c;
-            padding-left: 12px;
-        }
-        
-        .progress-bar.basic .progress-fill {
-            background: linear-gradient(90deg, #3498db, #2980b9);
-        }
-        
-        .progress-bar.intermediate .progress-fill {
-            background: linear-gradient(90deg, #f39c12, #e67e22);
-        }
-        
-        .progress-bar.advanced .progress-fill {
-            background: linear-gradient(90deg, #e74c3c, #c0392b);
-        }
-        
-        .stat-label {
-            font-weight: 600;
-            color: #34495e;
-        }
-        
-        .stat-value {
-            font-weight: 700;
-            color: #e74c3c;
-        }
-        
-        .reset-btn {
-            margin: 20px 30px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 6px;
             color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(127, 140, 141, 0.3);
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            font-weight: 600;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.4s ease;
         }
         
-        .reset-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(127, 140, 141, 0.4);
-            background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+        .notification.success {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
         }
         
+        .notification.error {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Info Tooltip */
         .info-icon {
             display: inline-block;
             width: 18px;
@@ -453,11 +522,7 @@
             visibility: visible;
         }
         
-        .info-tooltip div {
-            margin-bottom: 3px;
-        }
-        
-        .info-tooltip .move-completed {
+        .move-completed, .transition-completed {
             background: linear-gradient(90deg, #27ae60, #2ecc71);
             color: white;
             padding: 2px 6px;
@@ -466,66 +531,19 @@
             box-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
         }
         
-        .info-tooltip .transition-completed {
-            background: linear-gradient(90deg, #27ae60, #2ecc71);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 700;
-            box-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
-        }
-        
-        .section-title {
-            margin: 30px 0 20px 0;
-            color: #2c3e50;
-            font-size: 1.3em;
-            text-align: center;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                border-radius: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .table-container {
-                padding: 15px;
-            }
-            
-            th, td {
-                padding: 8px 6px;
-                font-size: 0.9em;
-            }
-            
-            select {
-                width: 70px;
-                padding: 6px;
-            }
-
-            .toggle-switch {
-                width: 50px;
-                height: 24px;
-            }
-            
-            .toggle-switch::before {
-                width: 20px;
-                height: 18px;
-            }
-            
-            .toggle-switch.active::before {
-                transform: translateX(24px);
-            }
-            
-            .charts-container {
-                grid-template-columns: 1fr;
-            }
+            .container { margin: 10px; border-radius: 10px; }
+            .header h1 { font-size: 2em; }
+            .table-container { padding: 15px; }
+            th, td { padding: 8px 6px; font-size: 0.9em; }
+            select { width: 70px; padding: 6px; }
+            .toggle-switch { width: 50px; height: 24px; }
+            .toggle-switch::before { width: 20px; height: 18px; }
+            .toggle-switch.active::before { transform: translateX(24px); }
+            .charts-container { grid-template-columns: 1fr; }
+            .button-container { flex-direction: column; }
+            .btn { min-width: auto; }
         }
     </style>
 </head>
@@ -543,13 +561,11 @@
                         <th>Powermove</th>
                         <th>Base Points</th>
                         <th>Times Performed</th>
-                        <th style="width: 120px;"></th>
+                        <th style="width: 120px;">Form</th>
                         <th>Total Points</th>
                     </tr>
                 </thead>
-                <tbody id="powerMovesBody">
-                    <!-- Power moves will be inserted here -->
-                </tbody>
+                <tbody id="powerMovesBody"></tbody>
             </table>
             
             <h3 class="section-title">Transitions</h3>
@@ -559,18 +575,16 @@
                     <tr>
                         <th>Transition</th>
                         <th>Base Points</th>
-                        <th>Performed?</th>
+                        <th style="text-align: center;">Performed?</th>
                         <th>Multiplier</th>
                         <th>Total Points</th>
                     </tr>
                 </thead>
-                <tbody id="transitionsBody">
-                    <!-- Transitions will be inserted here -->
-                </tbody>
+                <tbody id="transitionsBody"></tbody>
             </table>
         </div>
         
-        <button class="calculate-score-btn" onclick="calculateFinalScore()">
+        <button class="btn btn-primary" onclick="PowerMoveTracker.calculateFinalScore()">
             Calculate my Final Score
         </button>
         
@@ -587,18 +601,7 @@
                     <div class="chart-title">Power Moves Analysis</div>
                     
                     <div class="stat-row basic">
-                        <span class="stat-label">Basic Moves:
-                            <span class="info-icon" onclick="toggleTooltip(this)">i
-                                <div class="info-tooltip">
-                                    <div><strong>Basic Moves:</strong></div>
-                                    <div>Windmill (with hands)</div>
-                                    <div>Swipe</div>
-                                    <div>Cricket</div>
-                                    <div>Jackhammer</div>
-                                    <div>Headspin</div>
-                                </div>
-                            </span>
-                        </span>
+                        <span class="stat-label">Basic Moves:</span>
                         <span class="stat-value" id="basicMovesScore">0 / 0</span>
                     </div>
                     <div class="progress-bar basic">
@@ -606,18 +609,7 @@
                     </div>
                     
                     <div class="stat-row intermediate">
-                        <span class="stat-label">Intermediate Moves:
-                            <span class="info-icon" onclick="toggleTooltip(this)">i
-                                <div class="info-tooltip">
-                                    <div><strong>Intermediate Moves:</strong></div>
-                                    <div>Windmill (without hands)</div>
-                                    <div>Halo</div>
-                                    <div>Flare</div>
-                                    <div>1990</div>
-                                    <div>2000</div>
-                                </div>
-                            </span>
-                        </span>
+                        <span class="stat-label">Intermediate Moves:</span>
                         <span class="stat-value" id="intermediateMovesScore">0 / 0</span>
                     </div>
                     <div class="progress-bar intermediate">
@@ -625,19 +617,7 @@
                     </div>
                     
                     <div class="stat-row advanced">
-                        <span class="stat-label">Advanced Moves:
-                            <span class="info-icon" onclick="toggleTooltip(this)">i
-                                <div class="info-tooltip">
-                                    <div><strong>Advanced Moves:</strong></div>
-                                    <div>Left Handhop</div>
-                                    <div>Right Handhop</div>
-                                    <div>Left Elbow Hop</div>
-                                    <div>Right Elbow Hop</div>
-                                    <div>Airflare</div>
-                                    <div>Elbow Airflare</div>
-                                </div>
-                            </span>
-                        </span>
+                        <span class="stat-label">Advanced Moves:</span>
                         <span class="stat-value" id="advancedMovesScore">0 / 0</span>
                     </div>
                     <div class="progress-bar advanced">
@@ -649,20 +629,7 @@
                     <div class="chart-title">Transition Analysis</div>
                     
                     <div class="stat-row basic">
-                        <span class="stat-label">Basic Transitions (0-32.9 pts):
-                            <span class="info-icon" onclick="toggleTooltip(this)">i
-                                <div class="info-tooltip">
-                                    <div><strong>Basic Transitions:</strong></div>
-                                    <div>Windmill → Flare</div>
-                                    <div>Headspin → 1990/2000</div>
-                                    <div>Halo → 1990/2000</div>
-                                    <div>Windmill → 1990/2000</div>
-                                    <div>Windmill → Elbow AF</div>
-                                    <div>Headspin → Elbow AF</div>
-                                    <div>Flare → 1990/2000</div>
-                                </div>
-                            </span>
-                        </span>
+                        <span class="stat-label">Basic Transitions:</span>
                         <span class="stat-value" id="basicTransitionsCount">0</span>
                     </div>
                     <div class="progress-bar basic">
@@ -670,19 +637,7 @@
                     </div>
                     
                     <div class="stat-row intermediate">
-                        <span class="stat-label">Intermediate Transitions (33-60 pts):
-                            <span class="info-icon" onclick="toggleTooltip(this)">i
-                                <div class="info-tooltip">
-                                    <div><strong>Intermediate Transitions:</strong></div>
-                                    <div>Halo → Elbow AF</div>
-                                    <div>Handstand/1990/2000 → Flare</div>
-                                    <div>Handstand/1990/2000 → Airflare</div>
-                                    <div>Handstand/1990/2000 → Elbow AF</div>
-                                    <div>Headspin → Airflare</div>
-                                    <div>Halo → Airflare</div>
-                                </div>
-                            </span>
-                        </span>
+                        <span class="stat-label">Intermediate Transitions:</span>
                         <span class="stat-value" id="intermediateTransitionsCount">0</span>
                     </div>
                     <div class="progress-bar intermediate">
@@ -690,18 +645,7 @@
                     </div>
                     
                     <div class="stat-row advanced">
-                        <span class="stat-label">Advanced Transitions (>60 pts):
-                            <span class="info-icon" onclick="toggleTooltip(this)">i
-                                <div class="info-tooltip">
-                                    <div><strong>Advanced Transitions:</strong></div>
-                                    <div>Windmill → Airflare</div>
-                                    <div>Flare → Airflare</div>
-                                    <div>Elbow AF → Airflare</div>
-                                    <div>Elbow AF → Assisted Elbow Flash</div>
-                                    <div>Elbow AF → Real Elbow Flash</div>
-                                </div>
-                            </span>
-                        </span>
+                        <span class="stat-label">Advanced Transitions:</span>
                         <span class="stat-value" id="advancedTransitionsCount">0</span>
                     </div>
                     <div class="progress-bar advanced">
@@ -711,630 +655,647 @@
             </div>
         </div>
         
-        <button class="reset-btn" onclick="resetAll()">Reset All Scores</button>
+        <div class="button-container">
+            <button class="btn btn-secondary" onclick="PowerMoveTracker.resetAll()">Reset All Scores</button>
+            <button class="btn btn-success" onclick="PowerMoveTracker.saveProgress()">Save Progress</button>
+            <button class="btn btn-info" onclick="document.getElementById('loadInput').click()">Load Progress</button>
+            <input type="file" id="loadInput" accept=".json" style="display: none;" onchange="PowerMoveTracker.loadProgress(event)">
+        </div>
     </div>
 
     <script>
-        // Move data with proper categorization
-        const moves = [
-            {name: "Windmill (with hands)", base: 1, category: "basic"},
-            {name: "Swipe", base: 1, category: "basic"},
-            {name: "Cricket", base: 1, category: "basic"},
-            {name: "Jackhammer", base: 2, category: "basic"},
-            {name: "Headspin", base: 2.5, category: "basic"},
-            {name: "Windmill (without hands)", base: 1.5, category: "intermediate"},
-            {name: "Halo", base: 3, category: "intermediate"},
-            {name: "Flare", base: 3, category: "intermediate"},
-            {name: "1990", base: [15, 20, 40, 60, 90, 120, 150, 180, 210, 240], reps: ["1.5", "2", "3", "4", "5", "6", "7", "8", "9", "10"], category: "intermediate"},
-            {name: "2000", base: [15, 20, 40, 60, 90, 120, 150, 180, 210, 240], reps: ["1.5", "2", "3", "4", "5", "6", "7", "8", "9", "10"], category: "intermediate"},
-            {name: "Left Handhop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
-            {name: "Right Handhop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
-            {name: "Left Elbow Hop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
-            {name: "Right Elbow Hop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
-            {name: "Airflare", base: 30, category: "advanced"},
-            {name: "Elbow Airflare", base: 30, category: "advanced"}
-        ];
+        const PowerMoveTracker = {
+            // Data Configuration
+            moves: [
+                {name: "Windmill (with hands)", base: 1, category: "basic"},
+                {name: "Swipe", base: 1, category: "basic"},
+                {name: "Cricket", base: 1, category: "basic"},
+                {name: "Jackhammer", base: 2, category: "basic"},
+                {name: "Headspin", base: 2.5, category: "basic"},
+                {name: "Windmill (without hands)", base: 1.5, category: "intermediate"},
+                {name: "Halo", base: 3, category: "intermediate"},
+                {name: "Flare", base: 3, category: "intermediate"},
+                {name: "1990", base: [15, 20, 40, 60, 90, 120, 150, 180, 210, 240], reps: ["1.5", "2", "3", "4", "5", "6", "7", "8", "9", "10"], category: "intermediate"},
+                {name: "2000", base: [15, 20, 40, 60, 90, 120, 150, 180, 210, 240], reps: ["1.5", "2", "3", "4", "5", "6", "7", "8", "9", "10"], category: "intermediate"},
+                {name: "Left Handhop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
+                {name: "Right Handhop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
+                {name: "Left Elbow Hop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
+                {name: "Right Elbow Hop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
+                {name: "Airflare", base: 30, category: "advanced"},
+                {name: "Elbow Airflare", base: 30, category: "advanced"}
+            ],
 
-        const transitions = [
-            {name: "Windmill → Flare", base: 4, multiplier: 1},
-            {name: "Windmill → Elbow AF", base: 31, multiplier: 1},
-            {name: "Windmill → 1990/2000", base: 16, multiplier: 1.8},
-            {name: "Windmill → Airflare", base: 31, multiplier: 2},
-            {name: "Headspin → Elbow AF", base: 32.5, multiplier: 1},
-            {name: "Headspin → 1990/2000", base: 17.5, multiplier: 1},
-            {name: "Headspin → Airflare", base: 32.5, multiplier: 1.5},
-            {name: "Halo → Elbow AF", base: 33, multiplier: 1},
-            {name: "Halo → 1990/2000", base: 18, multiplier: 1},
-            {name: "Halo → Airflare", base: 33, multiplier: 1.5},
-            {name: "Flare → 1990/2000", base: 18, multiplier: 1.8},
-            {name: "Flare → Airflare", base: 33, multiplier: 2},
-            {name: "Handstand/1990/2000 → Flare", base: 18, multiplier: 2},
-            {name: "Handstand/1990/2000 → Airflare", base: 45, multiplier: 1},
-            {name: "Handstand/1990/2000 → Elbow AF", base: 45, multiplier: 1},
-            {name: "Elbow AF → Airflare", base: 60, multiplier: 2},
-            {name: "Elbow AF → Assisted Elbow Flash", base: 60, multiplier: 2},
-            {name: "Elbow AF → Real Elbow Flash", base: 60, multiplier: 2.5}
-        ];
+            transitions: [
+                {name: "Windmill → Flare", base: 4, multiplier: 1},
+                {name: "Windmill → Elbow AF", base: 31, multiplier: 1},
+                {name: "Windmill → 1990/2000", base: 16, multiplier: 1.8},
+                {name: "Windmill → Airflare", base: 31, multiplier: 2},
+                {name: "Headspin → Elbow AF", base: 32.5, multiplier: 1},
+                {name: "Headspin → 1990/2000", base: 17.5, multiplier: 1},
+                {name: "Headspin → Airflare", base: 32.5, multiplier: 1.5},
+                {name: "Halo → Elbow AF", base: 33, multiplier: 1},
+                {name: "Halo → 1990/2000", base: 18, multiplier: 1},
+                {name: "Halo → Airflare", base: 33, multiplier: 1.5},
+                {name: "Flare → 1990/2000", base: 18, multiplier: 1.8},
+                {name: "Flare → Airflare", base: 33, multiplier: 2},
+                {name: "Handstand/1990/2000 → Flare", base: 18, multiplier: 2},
+                {name: "Handstand/1990/2000 → Airflare", base: 45, multiplier: 1},
+                {name: "Handstand/1990/2000 → Elbow AF", base: 45, multiplier: 1},
+                {name: "Elbow AF → Airflare", base: 60, multiplier: 2},
+                {name: "Elbow AF → Assisted Elbow Flash", base: 60, multiplier: 2},
+                {name: "Elbow AF → Real Elbow Flash", base: 60, multiplier: 2.5}
+            ],
 
-        // Utility functions for creating select options
-        function createRepetitionOptions(max = 10) {
-            let options = '';
-            for (let i = 0; i <= max; i++) {
-                options += `<option value="${i}">${i}</option>`;
-            }
-            return options;
-        }
+            // Utility Functions
+            createRepetitionSlider(max = 10, basePoints = null) {
+                return `
+                    <div class="slider-container">
+                        <input type="range" class="slider reps-slider" 
+                               min="0" max="${max}" value="0" step="1"
+                               data-base="${basePoints}" 
+                               oninput="PowerMoveTracker.updateSliderLabel(this, 'reps')">
+                        <div class="slider-label">0</div>
+                    </div>
+                `;
+            },
 
-        function createSpecialRepetitionOptions(reps) {
-            let options = '<option value="0">0</option>';
-            reps.forEach((rep, index) => {
-                options += `<option value="${index + 1}">${rep}</option>`;
-            });
-            return options;
-        }
+            createSpecialRepetitionSlider(reps, bases) {
+                const maxIndex = reps.length;
+                return `
+                    <div class="slider-container">
+                        <input type="range" class="slider special-reps-slider" 
+                               min="0" max="${maxIndex}" value="0" step="1"
+                               data-bases='${JSON.stringify(bases)}' 
+                               data-reps='${JSON.stringify(reps)}'
+                               oninput="PowerMoveTracker.updateSliderLabel(this, 'special')">
+                        <div class="slider-label">None</div>
+                    </div>
+                `;
+            },
 
-        function createFormOptions() {
-            return `
-                <option value="0">Select</option>
-                <option value="0.5">Poor</option>
-                <option value="0.75">Moderate</option>
-                <option value="1.5">Best</option>
-            `;
-        }
-
-        // Toggle tooltip visibility and update content
-        function toggleTooltip(element) {
-            element.classList.toggle('active');
-            updateTooltipContent(element);
-        }
-
-        // Update tooltip content with completion status
-        function updateTooltipContent(infoIcon) {
-            const tooltip = infoIcon.querySelector('.info-tooltip');
-            if (!tooltip) return;
-
-            const tooltipContent = tooltip.innerHTML;
-            const isBasicMoves = tooltipContent.includes('Basic Moves:');
-            const isIntermediateMoves = tooltipContent.includes('Intermediate Moves:');
-            const isAdvancedMoves = tooltipContent.includes('Advanced Moves:');
-            const isBasicTransitions = tooltipContent.includes('Basic Transitions:');
-            const isIntermediateTransitions = tooltipContent.includes('Intermediate Transitions:');
-            const isAdvancedTransitions = tooltipContent.includes('Advanced Transitions:');
-
-            if (isBasicMoves || isIntermediateMoves || isAdvancedMoves) {
-                let category = 'basic';
-                if (isIntermediateMoves) category = 'intermediate';
-                if (isAdvancedMoves) category = 'advanced';
+            createFormSlider() {
+                const formOptions = ['Select', 'Poor', 'Moderate', 'Best'];
+                const formValues = [0, 0.5, 0.75, 1.5];
                 
-                updateMoveTooltipContent(tooltip, category);
-            } else if (isBasicTransitions || isIntermediateTransitions || isAdvancedTransitions) {
-                let category = 'basic';
-                if (isIntermediateTransitions) category = 'intermediate';
-                if (isAdvancedTransitions) category = 'advanced';
+                return `
+                    <div class="slider-container">
+                        <input type="range" class="slider form-slider" 
+                               min="0" max="3" value="0" step="1"
+                               data-values='${JSON.stringify(formValues)}'
+                               data-labels='${JSON.stringify(formOptions)}'
+                               oninput="PowerMoveTracker.updateSliderLabel(this, 'form')">
+                        <div class="slider-label">Select</div>
+                    </div>
+                `;
+            },
+
+            updateSliderLabel(slider, type) {
+                const label = slider.parentNode.querySelector('.slider-label');
+                const value = parseInt(slider.value);
                 
-                updateTransitionTooltipContent(tooltip, category);
-            }
-        }
-
-        // Update move tooltip content with completion highlighting
-        function updateMoveTooltipContent(tooltip, category) {
-            const categoryMoves = moves.filter(move => move.category === category);
-            let tooltipHTML = `<div><strong>${category.charAt(0).toUpperCase() + category.slice(1)} Moves:</strong></div>`;
-            
-            categoryMoves.forEach(move => {
-                const isCompleted = checkMoveCompletion(move);
-                if (isCompleted) {
-                    tooltipHTML += `<div class="move-completed">${move.name}</div>`;
-                } else {
-                    tooltipHTML += `<div>${move.name}</div>`;
+                switch(type) {
+                    case 'reps':
+                        label.textContent = value.toString();
+                        break;
+                    case 'special':
+                        if (value === 0) {
+                            label.textContent = 'None';
+                        } else {
+                            const reps = JSON.parse(slider.dataset.reps);
+                            label.textContent = reps[value - 1];
+                        }
+                        break;
+                    case 'form':
+                        const labels = JSON.parse(slider.dataset.labels);
+                        label.textContent = labels[value];
+                        break;
                 }
-            });
-            
-            tooltip.innerHTML = tooltipHTML;
-        }
+                
+                // Trigger calculation
+                this.calculateRowTotal({ target: slider });
+            },
 
-        // Update transition tooltip content with completion highlighting
-        function updateTransitionTooltipContent(tooltip, category) {
-            const categoryTransitions = transitions.filter(transition => {
-                const maxPoints = transition.base * transition.multiplier;
-                if (category === 'basic') return maxPoints < 33;
-                if (category === 'intermediate') return maxPoints >= 33 && maxPoints < 60;
-                if (category === 'advanced') return maxPoints >= 60;
-                return false;
-            });
-            
-            let categoryTitle = 'Basic Transitions (0-32.9 pts):';
-            if (category === 'intermediate') categoryTitle = 'Intermediate Transitions (33-60 pts):';
-            if (category === 'advanced') categoryTitle = 'Advanced Transitions (>60 pts):';
-            
-            let tooltipHTML = `<div><strong>${categoryTitle}</strong></div>`;
-            
-            categoryTransitions.forEach(transition => {
-                const isCompleted = checkTransitionCompletion(transition);
-                if (isCompleted) {
-                    tooltipHTML += `<div class="transition-completed">${transition.name}</div>`;
+            // Toggle Functions
+            toggleSwitch(element) {
+                element.classList.toggle('active');
+                this.calculateRowTotal({ target: element });
+            },
+
+            // Table Building
+            buildTables() {
+                this.buildPowerMovesTable();
+                this.buildTransitionsTable();
+                this.attachEventListeners();
+            },
+
+            buildPowerMovesTable() {
+                const tbody = document.getElementById('powerMovesBody');
+                tbody.innerHTML = '';
+
+                this.moves.forEach(move => {
+                    const row = document.createElement('tr');
+                    row.classList.add(move.category);
+                    
+                    const maxPoints = this.calculateMaxPoints(move);
+                    row.innerHTML = this.generateMoveRowHTML(move, maxPoints);
+                    tbody.appendChild(row);
+                });
+
+                // Add total row
+                const totalRow = document.createElement('tr');
+                totalRow.classList.add('total-row');
+                totalRow.innerHTML = `
+                    <td colspan="4"><strong>POWERMOVES TOTAL</strong></td>
+                    <td class="total-points" id="powerMovesTotal">0</td>
+                `;
+                tbody.appendChild(totalRow);
+            },
+
+            buildTransitionsTable() {
+                const tbody = document.getElementById('transitionsBody');
+                tbody.innerHTML = '';
+
+                this.transitions.forEach(transition => {
+                    const row = document.createElement('tr');
+                    const maxPoints = (transition.base * transition.multiplier).toFixed(1);
+                    
+                    row.innerHTML = `
+                        <td class="move-name">${transition.name}</td>
+                        <td class="base-points">${transition.base}</td>
+                        <td style="text-align: center;">
+                            <div class="toggle-switch" onclick="PowerMoveTracker.toggleSwitch(this)" 
+                                 data-base="${transition.base}" data-multiplier="${transition.multiplier}">
+                            </div>
+                        </td>
+                        <td>${transition.multiplier > 1 ? `×${transition.multiplier}` : 'None'}</td>
+                        <td class="total-points">0/${maxPoints}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+                // Add total rows
+                const totalRow = document.createElement('tr');
+                totalRow.classList.add('total-row');
+                totalRow.innerHTML = `
+                    <td colspan="4"><strong>TRANSITIONS TOTAL</strong></td>
+                    <td class="total-points" id="transitionsTotal">0</td>
+                `;
+                tbody.appendChild(totalRow);
+
+                const grandTotalRow = document.createElement('tr');
+                grandTotalRow.classList.add('total-row', 'grand-total-row');
+                grandTotalRow.innerHTML = `
+                    <td colspan="4"><strong>GRAND TOTAL</strong></td>
+                    <td class="total-points" id="grandTotal">0</td>
+                `;
+                tbody.appendChild(grandTotalRow);
+            },
+
+            calculateMaxPoints(move) {
+                if (Array.isArray(move.base)) {
+                    return Math.max(...move.base);
+                } else if (move.name === "Flare") {
+                    return move.base * 10 * 1.5;
                 } else {
-                    tooltipHTML += `<div>${transition.name}</div>`;
+                    return move.base * 10;
                 }
-            });
-            
-            tooltip.innerHTML = tooltipHTML;
-        }
+            },
 
-        // Check if a move is completed at max points
-        function checkMoveCompletion(move) {
-            const moveRows = document.querySelectorAll('#powerMovesBody tr:not(.total-row)');
-            let currentScore = 0;
-            let maxScore = 0;
-            
-            // Calculate max possible score for this move
-            if (Array.isArray(move.base)) {
-                maxScore = Math.max(...move.base);
-            } else if (move.name === "Flare") {
-                maxScore = move.base * 10 * 1.5;
-            } else {
-                maxScore = move.base * 10;
-            }
-            
-            // Find current score for this move
-            moveRows.forEach(row => {
-                const nameCell = row.querySelector('.move-name');
-                if (nameCell && nameCell.textContent === move.name) {
-                    const totalCell = row.querySelector('.total-points');
-                    if (totalCell) {
-                        currentScore = parseFloat(totalCell.textContent.split('/')[0]) || 0;
+            generateMoveRowHTML(move, maxPoints) {
+                if (Array.isArray(move.base)) {
+                    return `
+                        <td class="move-name ${move.category}">${move.name}</td>
+                        <td class="base-points">Variable</td>
+                        <td>${this.createSpecialRepetitionSlider(move.reps, move.base)}</td>
+                        <td></td>
+                        <td class="total-points">0/${maxPoints}</td>
+                    `;
+                } else if (move.name === "Flare") {
+                    return `
+                        <td class="move-name ${move.category}">${move.name}</td>
+                        <td class="base-points">${move.base}</td>
+                        <td>${this.createRepetitionSlider(10, move.base)}</td>
+                        <td>${this.createFormSlider()}</td>
+                        <td class="total-points">0/${maxPoints.toFixed(1)}</td>
+                    `;
+                } else {
+                    return `
+                        <td class="move-name ${move.category}">${move.name}</td>
+                        <td class="base-points">${move.base}</td>
+                        <td>${this.createRepetitionSlider(10, move.base)}</td>
+                        <td></td>
+                        <td class="total-points">0/${maxPoints.toFixed(1)}</td>
+                    `;
+                }
+            },
+
+            // Event Handling
+            attachEventListeners() {
+                document.querySelectorAll('.reps-slider, .special-reps-slider, .form-slider').forEach(slider => {
+                    slider.addEventListener('input', (e) => this.calculateRowTotal(e));
+                });
+            },
+
+            calculateRowTotal(event) {
+                const row = event.target.closest('tr');
+                const repsSlider = row.querySelector('.reps-slider');
+                const specialRepsSlider = row.querySelector('.special-reps-slider');
+                const formSlider = row.querySelector('.form-slider');
+                const toggleSwitch = row.querySelector('.toggle-switch');
+                const totalCell = row.querySelector('.total-points');
+
+                let total = 0;
+
+                if (repsSlider && formSlider) {
+                    // Flare with form multiplier
+                    const basePoints = parseFloat(repsSlider.dataset.base);
+                    const reps = parseInt(repsSlider.value);
+                    const formValues = JSON.parse(formSlider.dataset.values);
+                    const multiplier = formValues[parseInt(formSlider.value)];
+                    if (multiplier > 0) {
+                        total = basePoints * reps * multiplier;
+                    }
+                } else if (repsSlider) {
+                    // Regular moves
+                    const basePoints = parseFloat(repsSlider.dataset.base);
+                    const reps = parseInt(repsSlider.value);
+                    total = basePoints * reps;
+                } else if (specialRepsSlider) {
+                    // Special moves (1990, 2000, Handhop, Elbow Hop)
+                    const bases = JSON.parse(specialRepsSlider.dataset.bases);
+                    const selectedIndex = parseInt(specialRepsSlider.value);
+                    if (selectedIndex > 0) {
+                        total = bases[selectedIndex - 1];
+                    }
+                } else if (toggleSwitch) {
+                    // Transitions
+                    const basePoints = parseFloat(toggleSwitch.dataset.base);
+                    const multiplier = parseFloat(toggleSwitch.dataset.multiplier);
+                    const isActive = toggleSwitch.classList.contains('active');
+                    if (isActive) {
+                        total = basePoints * multiplier;
                     }
                 }
-            });
-            
-            return currentScore >= maxScore;
-        }
 
-        // Check if a transition is completed
-        function checkTransitionCompletion(transition) {
-            const transitionRows = document.querySelectorAll('#transitionsBody tr:not(.total-row)');
-            
-            for (let row of transitionRows) {
-                const nameCell = row.querySelector('.move-name');
-                const toggleSwitch = row.querySelector('.toggle-switch');
-                
-                if (nameCell && nameCell.textContent === transition.name && 
-                    toggleSwitch && toggleSwitch.classList.contains('active')) {
-                    return true;
+                // Update cell
+                if (totalCell) {
+                    const maxValue = totalCell.textContent.split('/')[1];
+                    totalCell.textContent = maxValue ? `${total.toFixed(1)}/${maxValue}` : total.toFixed(1);
                 }
-            }
-            return false;
-        }
 
-        // Show move demo placeholder
-        function showMoveDemo(moveName) {
-            alert(`Video demonstration for "${moveName}" will be available soon!`);
-        }
+                this.calculateTotals();
+            },
 
-        // Toggle switch functionality
-        function toggleSwitch(element) {
-            element.classList.toggle('active');
-            calculateRowTotal({ target: element });
-        }
+            // Score Calculations
+            calculateTotals() {
+                const powerMovesTotal = this.calculateSectionTotal('#powerMovesBody .total-points:not(#powerMovesTotal)');
+                const transitionsTotal = this.calculateSectionTotal('#transitionsBody .total-points:not(#transitionsTotal):not(#grandTotal)');
+                const grandTotal = powerMovesTotal + transitionsTotal;
 
-        // Build the main tables
-        function buildTable() {
-            const powerMovesBody = document.querySelector('#powerMovesBody');
-            const transitionsBody = document.querySelector('#transitionsBody');
-            
-            if (!powerMovesBody || !transitionsBody) {
-                console.error('Could not find table bodies');
-                return;
-            }
-            
-            powerMovesBody.innerHTML = '';
-            transitionsBody.innerHTML = '';
+                this.updateElement('powerMovesTotal', powerMovesTotal.toFixed(1));
+                this.updateElement('transitionsTotal', transitionsTotal.toFixed(1));
+                this.updateElement('grandTotal', grandTotal.toFixed(1));
+            },
 
-            // Add power moves to table
-            moves.forEach(move => {
-                const row = document.createElement('tr');
-                row.classList.add(move.category);
-                
-                if (Array.isArray(move.base)) {
-                    // Special moves with multiple base values (1990, 2000, Handhop, Elbow Hop)
-                    const maxPoints = Math.max(...move.base);
-                    row.innerHTML = `
-                        <td class="move-name ${move.category}" onclick="showMoveDemo('${move.name}')">${move.name}</td>
-                        <td class="base-points">Variable</td>
-                        <td><select class="special-reps" data-bases='${JSON.stringify(move.base)}'>
-                            ${createSpecialRepetitionOptions(move.reps)}
-                        </select></td>
-                        <td></td>
-                        <td class="total-points">0/${maxPoints}</td>
-                    `;
-                } else if (move.name === "Flare") {
-                    // Special case for Flare with form dropdown
-                    const maxPoints = (move.base * 10 * 1.5).toFixed(1);
-                    row.innerHTML = `
-                        <td class="move-name ${move.category}" onclick="showMoveDemo('${move.name}')">${move.name}</td>
-                        <td class="base-points">${move.base}</td>
-                        <td><select class="reps" data-base="${move.base}">
-                            ${createRepetitionOptions(10)}
-                        </select></td>
-                        <td>
-                            <select class="form-multiplier">
-                                ${createFormOptions()}
-                            </select>
-                            <span class="info-icon" onclick="toggleTooltip(this)">i
-                                <div class="info-tooltip">
-                                    <div><strong>Poor form + scrape:</strong> ×0.5</div>
-                                    <div><strong>Poor form + no scrape:</strong> ×0.75</div>
-                                    <div><strong>Good form + scrape:</strong> ×0.75</div>
-                                    <div><strong>Good form:</strong> ×1.5</div>
-                                </div>
-                            </span>
-                        </td>
-                        <td class="total-points">0/${maxPoints}</td>
-                    `;
-                } else {
-                    // Regular moves (no multiplier)
-                    const maxPoints = (move.base * 10).toFixed(1);
-                    row.innerHTML = `
-                        <td class="move-name ${move.category}" onclick="showMoveDemo('${move.name}')">${move.name}</td>
-                        <td class="base-points">${move.base}</td>
-                        <td><select class="reps" data-base="${move.base}">
-                            ${createRepetitionOptions(10)}
-                        </select></td>
-                        <td></td>
-                        <td class="total-points">0/${maxPoints}</td>
-                    `;
-                }
-                powerMovesBody.appendChild(row);
-            });
-
-            // Add powermoves total row
-            const powerMovesTotalRow = document.createElement('tr');
-            powerMovesTotalRow.classList.add('total-row');
-            powerMovesTotalRow.innerHTML = `
-                <td colspan="4"><strong>POWERMOVES TOTAL</strong></td>
-                <td class="total-points" id="powerMovesTotal">0</td>
-            `;
-            powerMovesBody.appendChild(powerMovesTotalRow);
-
-            // Add transition moves to table
-            transitions.forEach(transition => {
-                const row = document.createElement('tr');
-                const maxPoints = transition.base * transition.multiplier;
-                let categoryClass = 'transition-basic';
-                if (maxPoints >= 60) categoryClass = 'transition-advanced';
-                else if (maxPoints >= 33) categoryClass = 'transition-intermediate';
-                
-                row.classList.add('transitions-section', categoryClass);
-                const maxPointsFormatted = maxPoints.toFixed(1);
-                row.innerHTML = `
-                    <td class="move-name" onclick="showMoveDemo('${transition.name}')">${transition.name}</td>
-                    <td class="base-points">${transition.base}</td>
-                    <td><div class="toggle-switch" onclick="toggleSwitch(this)" data-base="${transition.base}" data-multiplier="${transition.multiplier}"></div></td>
-                    <td>${transition.multiplier > 1 ? `×${transition.multiplier}` : 'None'}</td>
-                    <td class="total-points">0/${maxPointsFormatted}</td>
-                `;
-                transitionsBody.appendChild(row);
-            });
-
-            // Add transitions total row
-            const transitionsTotalRow = document.createElement('tr');
-            transitionsTotalRow.classList.add('total-row');
-            transitionsTotalRow.innerHTML = `
-                <td colspan="4"><strong>TRANSITIONS TOTAL</strong></td>
-                <td class="total-points" id="transitionsTotal">0</td>
-            `;
-            transitionsBody.appendChild(transitionsTotalRow);
-
-            // Add event listeners for all interactive elements
-            document.querySelectorAll('.reps, .special-reps, .form-multiplier').forEach(select => {
-                select.addEventListener('change', calculateRowTotal);
-            });
-        }
-
-        // Calculate individual row totals
-        function calculateRowTotal(event) {
-            const row = event.target.closest('tr');
-            const repsSelect = row.querySelector('.reps');
-            const specialRepsSelect = row.querySelector('.special-reps');
-            const formMultiplierSelect = row.querySelector('.form-multiplier');
-            const toggleSwitch = row.querySelector('.toggle-switch');
-            const totalCell = row.querySelector('.total-points');
-
-            let total = 0;
-
-            if (repsSelect && formMultiplierSelect) {
-                // Flare with form multiplier
-                const basePoints = parseFloat(repsSelect.dataset.base);
-                const reps = parseInt(repsSelect.value);
-                const multiplier = parseFloat(formMultiplierSelect.value);
-                if (multiplier > 0) { // Only calculate if not "Select"
-                    total = basePoints * reps * multiplier;
-                }
-            } else if (repsSelect) {
-                // Regular moves (no multiplier)
-                const basePoints = parseFloat(repsSelect.dataset.base);
-                const reps = parseInt(repsSelect.value);
-                total = basePoints * reps;
-            } else if (specialRepsSelect) {
-                // Special moves (1990, 2000, Handhop, Elbow Hop)
-                const bases = JSON.parse(specialRepsSelect.dataset.bases);
-                const selectedIndex = parseInt(specialRepsSelect.value);
-                
-                if (selectedIndex > 0) {
-                    const basePoints = bases[selectedIndex - 1];
-                    total = basePoints;
-                }
-            } else if (toggleSwitch) {
-                // Transitions with toggle switch
-                const basePoints = parseFloat(toggleSwitch.dataset.base);
-                const builtInMultiplier = parseFloat(toggleSwitch.dataset.multiplier);
-                const isActive = toggleSwitch.classList.contains('active');
-                
-                if (isActive) {
-                    total = basePoints * builtInMultiplier;
-                }
-            }
-
-            // Update the cell while preserving the max value
-            if (totalCell) {
-                const currentText = totalCell.textContent;
-                const maxValue = currentText.split('/')[1];
-                if (maxValue) {
-                    totalCell.textContent = `${total.toFixed(1)}/${maxValue}`;
-                } else {
-                    totalCell.textContent = total.toFixed(1);
-                }
-            }
-            calculateTotals();
-            
-            // Update any active tooltips to reflect current completion status
-            updateAllActiveTooltips();
-        }
-
-        // Update all currently active/visible tooltips
-        function updateAllActiveTooltips() {
-            const activeTooltips = document.querySelectorAll('.info-icon.active, .info-icon:hover');
-            activeTooltips.forEach(infoIcon => {
-                updateTooltipContent(infoIcon);
-            });
-        }
-
-        // Calculate section totals
-        function calculateTotals() {
-            // Calculate powermoves total
-            let powerMovesTotal = 0;
-            document.querySelectorAll('#powerMovesBody .total-points:not(#powerMovesTotal)').forEach(cell => {
-                const currentValue = parseFloat(cell.textContent.split('/')[0]);
-                if (!isNaN(currentValue) && currentValue > 0) {
-                    powerMovesTotal += currentValue;
-                }
-            });
-            
-            const powerMovesTotalElement = document.getElementById('powerMovesTotal');
-            if (powerMovesTotalElement) {
-                powerMovesTotalElement.textContent = powerMovesTotal.toFixed(1);
-            }
-
-            // Calculate transitions total
-            let transitionsTotal = 0;
-            document.querySelectorAll('#transitionsBody .total-points:not(#transitionsTotal)').forEach(cell => {
-                const currentValue = parseFloat(cell.textContent.split('/')[0]);
-                if (!isNaN(currentValue) && currentValue > 0) {
-                    transitionsTotal += currentValue;
-                }
-            });
-            
-            const transitionsTotalElement = document.getElementById('transitionsTotal');
-            if (transitionsTotalElement) {
-                transitionsTotalElement.textContent = transitionsTotal.toFixed(1);
-            }
-        }
-
-        // Calculate and display final score
-        function calculateFinalScore() {
-            // Calculate totals
-            let powerMovesTotal = 0;
-            document.querySelectorAll('#powerMovesBody .total-points:not(#powerMovesTotal)').forEach(cell => {
-                const currentValue = parseFloat(cell.textContent.split('/')[0]);
-                if (!isNaN(currentValue) && currentValue > 0) {
-                    powerMovesTotal += currentValue;
-                }
-            });
-
-            let transitionsTotal = 0;
-            document.querySelectorAll('#transitionsBody .total-points:not(#transitionsTotal)').forEach(cell => {
-                const currentValue = parseFloat(cell.textContent.split('/')[0]);
-                if (!isNaN(currentValue) && currentValue > 0) {
-                    transitionsTotal += currentValue;
-                }
-            });
-
-            const grandTotal = powerMovesTotal + transitionsTotal;
-            
-            // Calculate max possible scores
-            let maxPowerMoves = 0;
-            let maxTransitions = 0;
-
-            moves.forEach(move => {
-                if (Array.isArray(move.base)) {
-                    maxPowerMoves += Math.max(...move.base);
-                } else if (move.name === "Flare") {
-                    maxPowerMoves += move.base * 10 * 1.5;
-                } else {
-                    maxPowerMoves += move.base * 10;
-                }
-            });
-
-            transitions.forEach(transition => {
-                maxTransitions += transition.base * transition.multiplier;
-            });
-
-            const totalMax = maxPowerMoves + maxTransitions;
-            
-            // Display score
-            document.getElementById('finalScore').textContent = grandTotal.toFixed(1);
-            document.getElementById('maxScore').textContent = totalMax.toFixed(1);
-            document.getElementById('scoreDisplay').style.display = 'block';
-            
-            // Generate and show analysis
-            generateAnalysis(powerMovesTotal, transitionsTotal, maxPowerMoves, maxTransitions);
-            document.getElementById('summarySection').style.display = 'block';
-            
-            // Auto-scroll to score display with smooth animation
-            setTimeout(() => {
-                document.getElementById('scoreDisplay').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
+            calculateSectionTotal(selector) {
+                let total = 0;
+                document.querySelectorAll(selector).forEach(cell => {
+                    const currentValue = parseFloat(cell.textContent.split('/')[0]);
+                    if (!isNaN(currentValue) && currentValue > 0) {
+                        total += currentValue;
+                    }
                 });
-            }, 100);
-        }
-        
-        // Generate performance analysis
-        function generateAnalysis(powerMovesTotal, transitionsTotal, maxPowerMoves, maxTransitions) {
-            // Categorize moves by difficulty
-            const categories = {
-                basic: { score: 0, max: 0, completed: [] },
-                intermediate: { score: 0, max: 0, completed: [] },
-                advanced: { score: 0, max: 0, completed: [] }
-            };
+                return total;
+            },
 
-            moves.forEach(move => {
-                let currentScore = 0;
-                let maxScore = 0;
-                
-                if (Array.isArray(move.base)) {
-                    maxScore = Math.max(...move.base);
-                } else if (move.name === "Flare") {
-                    maxScore = move.base * 10 * 1.5;
-                } else {
-                    maxScore = move.base * 10;
-                }
-                
-                // Get current score for this move
-                const moveRows = document.querySelectorAll('#powerMovesBody tr:not(.total-row)');
-                moveRows.forEach(row => {
+            calculateFinalScore() {
+                const powerMovesTotal = this.calculateSectionTotal('#powerMovesBody .total-points:not(#powerMovesTotal)');
+                const transitionsTotal = this.calculateSectionTotal('#transitionsBody .total-points:not(#transitionsTotal):not(#grandTotal)');
+                const grandTotal = powerMovesTotal + transitionsTotal;
+
+                // Calculate max possible scores
+                const maxPowerMoves = this.moves.reduce((sum, move) => sum + this.calculateMaxPoints(move), 0);
+                const maxTransitions = this.transitions.reduce((sum, t) => sum + (t.base * t.multiplier), 0);
+                const totalMax = maxPowerMoves + maxTransitions;
+
+                // Display score
+                this.updateElement('finalScore', grandTotal.toFixed(1));
+                this.updateElement('maxScore', totalMax.toFixed(1));
+                this.showElement('scoreDisplay');
+
+                // Generate analysis
+                this.generateAnalysis(powerMovesTotal, transitionsTotal, maxPowerMoves, maxTransitions);
+                this.showElement('summarySection');
+
+                // Smooth scroll to score
+                setTimeout(() => {
+                    document.getElementById('scoreDisplay').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }, 100);
+            },
+
+            // Analysis Generation
+            generateAnalysis(powerMovesTotal, transitionsTotal, maxPowerMoves, maxTransitions) {
+                this.analyzeMovesCategories();
+                this.analyzeTransitionCategories();
+            },
+
+            analyzeMovesCategories() {
+                const categories = { basic: { score: 0, max: 0 }, intermediate: { score: 0, max: 0 }, advanced: { score: 0, max: 0 } };
+
+                this.moves.forEach(move => {
+                    const currentScore = this.getCurrentMoveScore(move.name);
+                    const maxScore = this.calculateMaxPoints(move);
+                    
+                    categories[move.category].score += currentScore;
+                    categories[move.category].max += maxScore;
+                });
+
+                // Update UI
+                Object.keys(categories).forEach(category => {
+                    const data = categories[category];
+                    const percentage = data.max > 0 ? (data.score / data.max * 100) : 0;
+                    
+                    this.updateElement(`${category}MovesScore`, `${data.score.toFixed(1)} / ${data.max.toFixed(1)}`);
+                    this.updateElement(`${category}MovesProgress`, '', el => el.style.width = `${percentage}%`);
+                });
+            },
+
+            analyzeTransitionCategories() {
+                const categories = { basic: { completed: 0, total: 0 }, intermediate: { completed: 0, total: 0 }, advanced: { completed: 0, total: 0 } };
+
+                this.transitions.forEach(transition => {
+                    const maxPoints = transition.base * transition.multiplier;
+                    let category = 'basic';
+                    if (maxPoints >= 60) category = 'advanced';
+                    else if (maxPoints >= 33) category = 'intermediate';
+
+                    categories[category].total++;
+
+                    if (this.isTransitionCompleted(transition.name)) {
+                        categories[category].completed++;
+                    }
+                });
+
+                // Update UI
+                Object.keys(categories).forEach(category => {
+                    const data = categories[category];
+                    const percentage = data.total > 0 ? (data.completed / data.total * 100) : 0;
+                    
+                    this.updateElement(`${category}TransitionsCount`, `${data.completed} / ${data.total}`);
+                    this.updateElement(`${category}TransitionsProgress`, '', el => el.style.width = `${percentage}%`);
+                });
+            },
+
+            getCurrentMoveScore(moveName) {
+                const rows = document.querySelectorAll('#powerMovesBody tr:not(.total-row)');
+                for (let row of rows) {
                     const nameCell = row.querySelector('.move-name');
-                    if (nameCell && nameCell.textContent === move.name) {
+                    if (nameCell && nameCell.textContent === moveName) {
                         const totalCell = row.querySelector('.total-points');
                         if (totalCell) {
-                            currentScore = parseFloat(totalCell.textContent.split('/')[0]) || 0;
+                            return parseFloat(totalCell.textContent.split('/')[0]) || 0;
                         }
                     }
-                });
-                
-                categories[move.category].score += currentScore;
-                categories[move.category].max += maxScore;
-                
-                // Check completion status
-                if (move.name.includes("Handhop") || move.name.includes("Elbow Hop")) {
-                    // For handhop/elbow hop, check if highest rep range (20-30) is selected
-                    const moveRow = Array.from(document.querySelectorAll('#powerMovesBody tr')).find(row => {
-                        const nameCell = row.querySelector('.move-name');
-                        return nameCell && nameCell.textContent === move.name;
-                    });
-                    
-                    if (moveRow) {
-                        const specialRepsSelect = moveRow.querySelector('.special-reps');
-                        if (specialRepsSelect && parseInt(specialRepsSelect.value) === 3) {
-                            categories[move.category].completed.push(move.name);
-                        }
-                    }
-                } else if (currentScore > 0) {
-                    categories[move.category].completed.push(move.name);
                 }
-            });
+                return 0;
+            },
 
-            // Update power moves analysis display
-            Object.keys(categories).forEach(category => {
-                const data = categories[category];
-                
-                const scoreElement = document.getElementById(`${category}MovesScore`);
-                const progressElement = document.getElementById(`${category}MovesProgress`);
-                
-                if (scoreElement) {
-                    scoreElement.textContent = `${data.score.toFixed(1)} / ${data.max.toFixed(1)}`;
-                }
-                
-                if (progressElement) {
-                    const percentage = data.max > 0 ? (data.score / data.max * 100) : 0;
-                    progressElement.style.width = `${percentage}%`;
-                }
-            });
-
-            // Transition analysis by point categories
-            const transitionCategories = { basic: 0, intermediate: 0, advanced: 0 };
-            const transitionCategoryTotals = { basic: 0, intermediate: 0, advanced: 0 };
-
-            transitions.forEach(transition => {
-                const maxPoints = transition.base * transition.multiplier;
-                let category = 'basic';
-                if (maxPoints >= 60) category = 'advanced';
-                else if (maxPoints >= 33) category = 'intermediate';
-
-                transitionCategoryTotals[category]++;
-
-                // Check if completed (toggle switch is active)
-                const transitionRows = document.querySelectorAll('#transitionsBody tr:not(.total-row)');
-                transitionRows.forEach(row => {
+            isTransitionCompleted(transitionName) {
+                const rows = document.querySelectorAll('#transitionsBody tr:not(.total-row)');
+                for (let row of rows) {
                     const nameCell = row.querySelector('.move-name');
                     const toggleSwitch = row.querySelector('.toggle-switch');
-                    if (nameCell && nameCell.textContent === transition.name && 
+                    if (nameCell && nameCell.textContent === transitionName && 
                         toggleSwitch && toggleSwitch.classList.contains('active')) {
-                        transitionCategories[category]++;
+                        return true;
+                    }
+                }
+                return false;
+            },
+
+            // Save/Load Functionality
+            saveProgress() {
+                const progressData = {
+                    timestamp: new Date().toISOString(),
+                    version: "2.0",
+                    powerMoves: this.extractPowerMovesData(),
+                    transitions: this.extractTransitionsData(),
+                    metadata: this.calculateMetadata()
+                };
+
+                this.downloadFile(progressData, this.generateFilename());
+                this.showNotification('Progress saved successfully!', 'success');
+            },
+
+            extractPowerMovesData() {
+                const data = {};
+                document.querySelectorAll('#powerMovesBody tr:not(.total-row)').forEach(row => {
+                    const nameCell = row.querySelector('.move-name');
+                    if (nameCell) {
+                        const moveName = nameCell.textContent;
+                        data[moveName] = {
+                            reps: this.getSelectValue(row, '.reps'),
+                            specialReps: this.getSelectValue(row, '.special-reps'),
+                            formMultiplier: this.getSelectValue(row, '.form-multiplier'),
+                            totalScore: this.getTotalScore(row)
+                        };
                     }
                 });
-            });
+                return data;
+            },
 
-            // Update transition analysis display
-            Object.keys(transitionCategories).forEach(category => {
-                const completed = transitionCategories[category];
-                const total = transitionCategoryTotals[category];
-                const percentage = total > 0 ? (completed / total * 100) : 0;
-                
-                const countElement = document.getElementById(`${category}TransitionsCount`);
-                const progressElement = document.getElementById(`${category}TransitionsProgress`);
-                
-                if (countElement) {
-                    countElement.textContent = `${completed} / ${total}`;
-                }
-                
-                if (progressElement) {
-                    progressElement.style.width = `${percentage}%`;
-                }
-            });
-        }
+            extractTransitionsData() {
+                const data = {};
+                document.querySelectorAll('#transitionsBody tr:not(.total-row)').forEach(row => {
+                    const nameCell = row.querySelector('.move-name');
+                    const toggleSwitch = row.querySelector('.toggle-switch');
+                    if (nameCell && toggleSwitch) {
+                        data[nameCell.textContent] = {
+                            completed: toggleSwitch.classList.contains('active'),
+                            totalScore: this.getTotalScore(row)
+                        };
+                    }
+                });
+                return data;
+            },
 
-        // Reset all inputs and scores
-        function resetAll() {
-            // Reset all select elements
-            document.querySelectorAll('.reps').forEach(select => select.value = '0');
-            document.querySelectorAll('.special-reps').forEach(select => select.value = '0');
-            document.querySelectorAll('.form-multiplier').forEach(select => select.value = '0');
-            
-            // Reset all toggle switches
-            document.querySelectorAll('.toggle-switch').forEach(toggle => {
-                toggle.classList.remove('active');
-            });
-            
-            // Reset all total point displays
-            document.querySelectorAll('.total-points').forEach(cell => {
-                const currentText = cell.textContent;
-                if (currentText.includes('/')) {
-                    const maxValue = currentText.split('/')[1];
-                    cell.textContent = `0/${maxValue}`;
-                } else {
-                    cell.textContent = '0';
-                }
-            });
-            
-            // Hide score display and summary
-            document.getElementById('scoreDisplay').style.display = 'none';
-            document.getElementById('summarySection').style.display = 'none';
-        }
+            calculateMetadata() {
+                return {
+                    powerMovesScore: parseFloat(this.getElementText('powerMovesTotal')),
+                    transitionsScore: parseFloat(this.getElementText('transitionsTotal')),
+                    totalScore: parseFloat(this.getElementText('grandTotal'))
+                };
+            },
 
-        // Initialize the application when page loads
-        window.addEventListener('DOMContentLoaded', function() {
-            buildTable();
+            loadProgress(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const progressData = JSON.parse(e.target.result);
+                        this.validateProgressData(progressData);
+                        this.restoreProgressData(progressData);
+                        this.showNotification(`Progress loaded successfully!\nSaved: ${new Date(progressData.timestamp).toLocaleString()}`, 'success');
+                    } catch (error) {
+                        console.error('Error loading progress:', error);
+                        this.showNotification('Error loading file. Please check the file format.', 'error');
+                    }
+                    event.target.value = '';
+                };
+                reader.readAsText(file);
+            },
+
+            validateProgressData(data) {
+                if (!data.powerMoves || !data.transitions) {
+                    throw new Error('Invalid file format');
+                }
+            },
+
+            restoreProgressData(data) {
+                this.resetAll();
+                this.restorePowerMovesData(data.powerMoves);
+                this.restoreTransitionsData(data.transitions);
+            },
+
+            restorePowerMovesData(movesData) {
+                document.querySelectorAll('#powerMovesBody tr:not(.total-row)').forEach(row => {
+                    const nameCell = row.querySelector('.move-name');
+                    if (!nameCell) return;
+
+                    const moveData = movesData[nameCell.textContent];
+                    if (moveData) {
+                        this.setSelectValue(row, '.reps', moveData.reps);
+                        this.setSelectValue(row, '.special-reps', moveData.specialReps);
+                        this.setSelectValue(row, '.form-multiplier', moveData.formMultiplier);
+                        
+                        const selectElement = row.querySelector('.reps, .special-reps, .form-multiplier');
+                        if (selectElement) {
+                            this.calculateRowTotal({ target: selectElement });
+                        }
+                    }
+                });
+            },
+
+            restoreTransitionsData(transitionsData) {
+                document.querySelectorAll('#transitionsBody tr:not(.total-row)').forEach(row => {
+                    const nameCell = row.querySelector('.move-name');
+                    const toggleSwitch = row.querySelector('.toggle-switch');
+                    
+                    if (!nameCell || !toggleSwitch) return;
+
+                    const transitionData = transitionsData[nameCell.textContent];
+                    if (transitionData && transitionData.completed) {
+                        toggleSwitch.classList.add('active');
+                        this.calculateRowTotal({ target: toggleSwitch });
+                    }
+                });
+            },
+
+            // Reset Functionality
+            resetAll() {
+                // Reset all controls
+                document.querySelectorAll('.reps, .special-reps, .form-multiplier').forEach(select => select.value = '0');
+                document.querySelectorAll('.toggle-switch').forEach(toggle => toggle.classList.remove('active'));
+                
+                // Reset all totals
+                document.querySelectorAll('.total-points').forEach(cell => {
+                    const currentText = cell.textContent;
+                    if (currentText.includes('/')) {
+                        const maxValue = currentText.split('/')[1];
+                        cell.textContent = `0/${maxValue}`;
+                    } else {
+                        cell.textContent = '0';
+                    }
+                });
+                
+                // Hide displays
+                this.hideElement('scoreDisplay');
+                this.hideElement('summarySection');
+            },
+
+            // Utility Helper Functions
+            updateElement(id, text, callback) {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (text !== undefined) element.textContent = text;
+                    if (callback) callback(element);
+                }
+            },
+
+            showElement(id) {
+                const element = document.getElementById(id);
+                if (element) element.style.display = 'block';
+            },
+
+            hideElement(id) {
+                const element = document.getElementById(id);
+                if (element) element.style.display = 'none';
+            },
+
+            getTotalScore(row) {
+                const totalCell = row.querySelector('.total-points');
+                return totalCell ? parseFloat(totalCell.textContent.split('/')[0]) || 0 : 0;
+            },
+
+            getElementText(id) {
+                const element = document.getElementById(id);
+                return element ? element.textContent : '0';
+            },
+
+            downloadFile(data, filename) {
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            },
+
+            generateFilename() {
+                const now = new Date();
+                const dateStr = now.toISOString().split('T')[0];
+                const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-');
+                return `powermove-progress-${dateStr}-${timeStr}.json`;
+            },
+
+            // Notification System
+            showNotification(message, type = 'success') {
+                const existingNotification = document.querySelector('.notification');
+                if (existingNotification) existingNotification.remove();
+
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => notification.classList.add('show'), 100);
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 400);
+                }, 4000);
+            },
+
+            // Initialization
+            init() {
+                this.buildTables();
+            }
+        };
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            PowerMoveTracker.init();
         });
     </script>
 </body>
