@@ -429,6 +429,11 @@
         .stat-label { font-weight: 600; color: #34495e; }
         .stat-value { font-weight: 700; color: #e74c3c; }
         
+        .tooltip-completed {
+            color: #27ae60 !important;
+            font-weight: 700;
+        }
+        
         .info-icon {
             display: inline-block;
             width: 18px;
@@ -615,52 +620,53 @@
                     <div class="chart-title">Transition Analysis</div>
                     
                     <div class="stat-row basic">
-                        <span class="stat-label">Basic Range (0-20 points):
+                        <span class="stat-label">Basic Transitions (0-20 pts):
                             <span class="info-icon">i
                                 <div class="info-tooltip">
-                                    <div><strong>Basic Transition Range:</strong></div>
-                                    <div>Transitions worth 0-20 points</div>
+                                    <div><strong>Basic Transitions (0-20 pts each):</strong></div>
                                     <div>• Windmill → Flare (4 pts)</div>
                                 </div>
                             </span>
                         </span>
-                        <span class="stat-value" id="basicTransitionsCount">0 / 20 pts (0%)</span>
+                        <span class="stat-value" id="basicTransitionsCount">0 / 1 (0%)</span>
                     </div>
                     <div class="progress-bar basic">
                         <div class="progress-fill" id="basicTransitionsProgress" style="width: 0%;"></div>
                     </div>
                     
                     <div class="stat-row intermediate">
-                        <span class="stat-label">Intermediate Range (21-36 points):
+                        <span class="stat-label">Intermediate Transitions (21-36 pts):
                             <span class="info-icon">i
                                 <div class="info-tooltip">
-                                    <div><strong>Intermediate Transition Range:</strong></div>
-                                    <div>Transitions worth 21-36 points</div>
+                                    <div><strong>Intermediate Transitions (21-36 pts each):</strong></div>
                                     <div>• Windmill → 1990/2000 (28.8 pts)</div>
+                                    <div>• Headspin → 1990/2000 (17.5 pts)</div>
+                                    <div>• Halo → 1990/2000 (18 pts)</div>
                                     <div>• Flare → 1990/2000 (32.4 pts)</div>
                                     <div>• Handstand/1990/2000 → Flare (36 pts)</div>
                                 </div>
                             </span>
                         </span>
-                        <span class="stat-value" id="intermediateTransitionsCount">0 / 36 pts (0%)</span>
+                        <span class="stat-value" id="intermediateTransitionsCount">0 / 5 (0%)</span>
                     </div>
                     <div class="progress-bar intermediate">
                         <div class="progress-fill" id="intermediateTransitionsProgress" style="width: 0%;"></div>
                     </div>
                     
                     <div class="stat-row advanced">
-                        <span class="stat-label">Advanced Range (>36 points):
+                        <span class="stat-label">Advanced Transitions (>36 pts):
                             <span class="info-icon">i
                                 <div class="info-tooltip">
-                                    <div><strong>Advanced Transition Range:</strong></div>
-                                    <div>Transitions worth more than 36 points</div>
-                                    <div>• Various airflare combinations</div>
-                                    <div>• Elbow airflare transitions</div>
-                                    <div>• High-level technical moves</div>
+                                    <div><strong>Advanced Transitions (>36 pts each):</strong></div>
+                                    <div>• Windmill → Airflare (62 pts)</div>
+                                    <div>• Headspin → Airflare (48.8 pts)</div>
+                                    <div>• Halo → Airflare (49.5 pts)</div>
+                                    <div>• Flare → Airflare (66 pts)</div>
+                                    <div>• Various other high-level transitions</div>
                                 </div>
                             </span>
                         </span>
-                        <span class="stat-value" id="advancedTransitionsCount">0 pts (0%)</span>
+                        <span class="stat-value" id="advancedTransitionsCount">0 / 12 (0%)</span>
                     </div>
                     <div class="progress-bar advanced">
                         <div class="progress-fill" id="advancedTransitionsProgress" style="width: 0%;"></div>
@@ -968,12 +974,12 @@
 
         function generateAnalysis() {
             const categories = { 
-                basic: { completed: 0, total: 5 }, 
-                intermediate: { completed: 0, total: 5 }, 
-                advanced: { completed: 0, total: 6 } 
+                basic: { completed: 0, total: 5, moves: [] }, 
+                intermediate: { completed: 0, total: 5, moves: [] }, 
+                advanced: { completed: 0, total: 6, moves: [] } 
             };
             
-            // Check move completion
+            // Check move completion and build lists
             moves.forEach(move => {
                 let isCompleted = false;
                 
@@ -1003,32 +1009,99 @@
                     }
                 }
                 
+                categories[move.category].moves.push({ name: move.name, completed: isCompleted });
                 if (isCompleted) {
                     categories[move.category].completed++;
                 }
             });
             
-            // Calculate transition points by range
-            let basicTransitionPoints = 0;
-            let intermediateTransitionPoints = 0;
-            let advancedTransitionPoints = 0;
+            // Update tooltips for moves
+            const basicTooltip = document.querySelector('#basicMovesScore').closest('.stat-row').querySelector('.info-tooltip');
+            basicTooltip.innerHTML = `
+                <div><strong>Basic Power Moves:</strong></div>
+                ${categories.basic.moves.map(move => 
+                    `<div class="${move.completed ? 'tooltip-completed' : ''}">• ${move.name}</div>`
+                ).join('')}
+            `;
+            
+            const intermediateTooltip = document.querySelector('#intermediateMovesScore').closest('.stat-row').querySelector('.info-tooltip');
+            intermediateTooltip.innerHTML = `
+                <div><strong>Intermediate Power Moves:</strong></div>
+                ${categories.intermediate.moves.map(move => 
+                    `<div class="${move.completed ? 'tooltip-completed' : ''}">• ${move.name}</div>`
+                ).join('')}
+            `;
+            
+            const advancedTooltip = document.querySelector('#advancedMovesScore').closest('.stat-row').querySelector('.info-tooltip');
+            advancedTooltip.innerHTML = `
+                <div><strong>Advanced Power Moves:</strong></div>
+                ${categories.advanced.moves.map(move => 
+                    `<div class="${move.completed ? 'tooltip-completed' : ''}">• ${move.name}</div>`
+                ).join('')}
+            `;
+            
+            // Calculate transition completion by point ranges
+            const transitionCategories = { 
+                basic: { completed: 0, total: 0, transitions: [] }, 
+                intermediate: { completed: 0, total: 0, transitions: [] }, 
+                advanced: { completed: 0, total: 0, transitions: [] } 
+            };
             
             const transitionRows = document.querySelectorAll('#transitionsBody tr:not(.total-row)');
-            transitionRows.forEach((row, index) => {
-                const toggle = row.querySelector('.toggle-switch');
-                if (toggle && toggle.classList.contains('active')) {
-                    const transition = transitions[index];
-                    const points = transition.base * transition.multiplier;
-                    
-                    if (points <= 20) {
-                        basicTransitionPoints += points;
-                    } else if (points <= 36) {
-                        intermediateTransitionPoints += points;
-                    } else {
-                        advancedTransitionPoints += points;
+            
+            transitions.forEach((transition, index) => {
+                const points = transition.base * transition.multiplier;
+                let category;
+                
+                if (points <= 20) {
+                    category = 'basic';
+                } else if (points <= 36) {
+                    category = 'intermediate';
+                } else {
+                    category = 'advanced';
+                }
+                
+                let isCompleted = false;
+                if (index < transitionRows.length) {
+                    const toggle = transitionRows[index].querySelector('.toggle-switch');
+                    if (toggle && toggle.classList.contains('active')) {
+                        isCompleted = true;
+                        transitionCategories[category].completed++;
                     }
                 }
+                
+                transitionCategories[category].total++;
+                transitionCategories[category].transitions.push({ 
+                    name: transition.name, 
+                    points: points.toFixed(1), 
+                    completed: isCompleted 
+                });
             });
+            
+            // Update tooltips for transitions
+            const basicTransitionTooltip = document.querySelector('#basicTransitionsCount').closest('.stat-row').querySelector('.info-tooltip');
+            basicTransitionTooltip.innerHTML = `
+                <div><strong>Basic Transitions (0-20 pts each):</strong></div>
+                ${transitionCategories.basic.transitions.map(transition => 
+                    `<div class="${transition.completed ? 'tooltip-completed' : ''}">• ${transition.name} (${transition.points} pts)</div>`
+                ).join('')}
+            `;
+            
+            const intermediateTransitionTooltip = document.querySelector('#intermediateTransitionsCount').closest('.stat-row').querySelector('.info-tooltip');
+            intermediateTransitionTooltip.innerHTML = `
+                <div><strong>Intermediate Transitions (21-36 pts each):</strong></div>
+                ${transitionCategories.intermediate.transitions.map(transition => 
+                    `<div class="${transition.completed ? 'tooltip-completed' : ''}">• ${transition.name} (${transition.points} pts)</div>`
+                ).join('')}
+            `;
+            
+            const advancedTransitionTooltip = document.querySelector('#advancedTransitionsCount').closest('.stat-row').querySelector('.info-tooltip');
+            advancedTransitionTooltip.innerHTML = `
+                <div><strong>Advanced Transitions (>36 pts each):</strong></div>
+                ${transitionCategories.advanced.transitions.map(transition => 
+                    `<div class="${transition.completed ? 'tooltip-completed' : ''}">• ${transition.name} (${transition.points} pts)</div>`
+                ).join('')}
+            `;
             
             // Update move completion UI
             Object.keys(categories).forEach(category => {
@@ -1044,22 +1117,17 @@
             });
             
             // Update transition analysis UI
-            const basicPercentage = Math.min(basicTransitionPoints / 20 * 100, 100);
-            const intermediatePercentage = Math.min(intermediateTransitionPoints / 36 * 100, 100);
-            const advancedPercentage = Math.min(advancedTransitionPoints / 100 * 100, 100); // Assuming 100 as max for advanced
-            
-            document.getElementById('basicTransitionsCount').textContent = 
-                `${basicTransitionPoints.toFixed(1)} / 20 pts (${basicPercentage.toFixed(0)}%)`;
-            document.getElementById('intermediateTransitionsCount').textContent = 
-                `${intermediateTransitionPoints.toFixed(1)} / 36 pts (${intermediatePercentage.toFixed(0)}%)`;
-            document.getElementById('advancedTransitionsCount').textContent = 
-                `${advancedTransitionPoints.toFixed(1)} pts (${advancedPercentage.toFixed(0)}%)`;
-            
-            setTimeout(() => {
-                document.getElementById('basicTransitionsProgress').style.width = `${basicPercentage}%`;
-                document.getElementById('intermediateTransitionsProgress').style.width = `${intermediatePercentage}%`;
-                document.getElementById('advancedTransitionsProgress').style.width = `${advancedPercentage}%`;
-            }, 400);
+            Object.keys(transitionCategories).forEach(category => {
+                const data = transitionCategories[category];
+                const percentage = data.total > 0 ? (data.completed / data.total * 100) : 0;
+                
+                document.getElementById(`${category}TransitionsCount`).textContent = 
+                    `${data.completed} / ${data.total} (${percentage.toFixed(0)}%)`;
+                
+                setTimeout(() => {
+                    document.getElementById(`${category}TransitionsProgress`).style.width = `${percentage}%`;
+                }, 400);
+            });
         }
 
         function resetAll() {
