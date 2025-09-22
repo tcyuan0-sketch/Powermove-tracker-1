@@ -602,14 +602,12 @@
                                     <div><strong>Advanced Power Moves:</strong></div>
                                     <div>• Left Handhop</div>
                                     <div>• Right Handhop</div>
-                                    <div>• Left Elbow Hop</div>
-                                    <div>• Right Elbow Hop</div>
                                     <div>• Airflare</div>
                                     <div>• Elbow Airflare</div>
                                 </div>
                             </span>
                         </span>
-                        <span class="stat-value" id="advancedMovesScore">0 / 6 (0%)</span>
+                        <span class="stat-value" id="advancedMovesScore">0 / 4 (0%)</span>
                     </div>
                     <div class="progress-bar advanced">
                         <div class="progress-fill" id="advancedMovesProgress" style="width: 0%;"></div>
@@ -620,49 +618,65 @@
                     <div class="chart-title">Transition Analysis</div>
                     
                     <div class="stat-row basic">
-                        <span class="stat-label">Basic Transitions (0-20 pts):
+                        <span class="stat-label">Basic Transitions (0-10 pts):
                             <span class="info-icon">i
                                 <div class="info-tooltip">
-                                    <div><strong>Basic Transitions (0-20 pts each):</strong></div>
+                                    <div><strong>Basic Transitions (0-10 pts each):</strong></div>
+                                    <div>• Windmill → Swipe (2 pts)</div>
+                                    <div>• Windmill → Headspin (3.5 pts)</div>
                                     <div>• Windmill → Flare (4 pts)</div>
+                                    <div>• Windmill → Halo (4 pts)</div>
+                                    <div>• Swipe → Headspin (3.5 pts)</div>
+                                    <div>• Swipe → Halo (4 pts)</div>
+                                    <div>• Flare → Swipe (4 pts)</div>
+                                    <div>• Flare → Headspin (5.5 pts)</div>
+                                    <div>• Flare → Halo (6 pts)</div>
                                 </div>
                             </span>
                         </span>
-                        <span class="stat-value" id="basicTransitionsCount">0 / 1 (0%)</span>
+                        <span class="stat-value" id="basicTransitionsCount">0 / 9 (0%)</span>
                     </div>
                     <div class="progress-bar basic">
                         <div class="progress-fill" id="basicTransitionsProgress" style="width: 0%;"></div>
                     </div>
                     
                     <div class="stat-row intermediate">
-                        <span class="stat-label">Intermediate Transitions (21-36 pts):
+                        <span class="stat-label">Intermediate Transitions (11-30 pts):
                             <span class="info-icon">i
                                 <div class="info-tooltip">
-                                    <div><strong>Intermediate Transitions (21-36 pts each):</strong></div>
+                                    <div><strong>Intermediate Transitions (11-30 pts each):</strong></div>
                                     <div>• Windmill → 1990/2000 (28.8 pts)</div>
                                     <div>• Headspin → 1990/2000 (17.5 pts)</div>
                                     <div>• Halo → 1990/2000 (18 pts)</div>
                                     <div>• Flare → 1990/2000 (32.4 pts)</div>
                                     <div>• Handstand/1990/2000 → Flare (36 pts)</div>
+                                    <div>• Swipe → 1990/2000 (16 pts)</div>
                                 </div>
                             </span>
                         </span>
-                        <span class="stat-value" id="intermediateTransitionsCount">0 / 5 (0%)</span>
+                        <span class="stat-value" id="intermediateTransitionsCount">0 / 6 (0%)</span>
                     </div>
                     <div class="progress-bar intermediate">
                         <div class="progress-fill" id="intermediateTransitionsProgress" style="width: 0%;"></div>
                     </div>
                     
                     <div class="stat-row advanced">
-                        <span class="stat-label">Advanced Transitions (>36 pts):
+                        <span class="stat-label">Advanced Transitions (>30 pts):
                             <span class="info-icon">i
                                 <div class="info-tooltip">
-                                    <div><strong>Advanced Transitions (>36 pts each):</strong></div>
+                                    <div><strong>Advanced Transitions (>30 pts each):</strong></div>
                                     <div>• Windmill → Airflare (62 pts)</div>
+                                    <div>• Windmill → Elbow AF (62 pts)</div>
                                     <div>• Headspin → Airflare (48.8 pts)</div>
                                     <div>• Halo → Airflare (49.5 pts)</div>
                                     <div>• Flare → Airflare (66 pts)</div>
-                                    <div>• Various other high-level transitions</div>
+                                    <div>• Flare → Elbow Airflare (33 pts)</div>
+                                    <div>• Handstand/1990/2000 → Airflare (45 pts)</div>
+                                    <div>• Handstand/1990/2000 → Elbow AF (45 pts)</div>
+                                    <div>• Swipe → Airflare (31 pts)</div>
+                                    <div>• Swipe → Elbow Airflare (31 pts)</div>
+                                    <div>• Elbow AF → Airflare (120 pts)</div>
+                                    <div>• Elbow AF → Real Elbow Flash (300 pts)</div>
                                 </div>
                             </span>
                         </span>
@@ -694,31 +708,46 @@
             {name: "2000", base: [15, 20, 40, 60, 90, 120, 150, 180, 210, 240], reps: ["1.5", "2", "3", "4", "5", "6", "7", "8", "9", "10"], category: "intermediate"},
             {name: "Left Handhop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
             {name: "Right Handhop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
-            {name: "Left Elbow Hop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
-            {name: "Right Elbow Hop", base: [15, 20, 40], reps: ["5-9", "10-19", "20-30"], category: "advanced"},
             {name: "Airflare", base: 30, category: "advanced"},
             {name: "Elbow Airflare", base: 30, category: "advanced"}
         ];
 
         const transitions = [
+            // Basic transitions (0-10 pts)
+            {name: "Windmill → Swipe", base: 2, multiplier: 1, category: "basic"},
+            {name: "Windmill → Headspin", base: 3.5, multiplier: 1, category: "basic"},
             {name: "Windmill → Flare", base: 4, multiplier: 1, category: "basic"},
-            {name: "Windmill → Elbow AF", base: 31, multiplier: 1, category: "advanced"},
-            {name: "Windmill → 1990/2000", base: 16, multiplier: 1.8, category: "intermediate"},
-            {name: "Windmill → Airflare", base: 31, multiplier: 2, category: "advanced"},
-            {name: "Headspin → Elbow AF", base: 32.5, multiplier: 1, category: "advanced"},
+            {name: "Windmill → Halo", base: 4, multiplier: 1, category: "basic"},
+            {name: "Swipe → Headspin", base: 3.5, multiplier: 1, category: "basic"},
+            {name: "Swipe → Halo", base: 4, multiplier: 1, category: "basic"},
+            {name: "Flare → Swipe", base: 4, multiplier: 1, category: "basic"},
+            {name: "Flare → Headspin", base: 5.5, multiplier: 1, category: "basic"},
+            {name: "Flare → Halo", base: 6, multiplier: 1, category: "basic"},
+            
+            // Intermediate transitions (11-30 pts)
+            {name: "Swipe → 1990/2000", base: 16, multiplier: 1, category: "intermediate"},
             {name: "Headspin → 1990/2000", base: 17.5, multiplier: 1, category: "intermediate"},
-            {name: "Headspin → Airflare", base: 32.5, multiplier: 1.5, category: "advanced"},
-            {name: "Halo → Elbow AF", base: 33, multiplier: 1, category: "advanced"},
             {name: "Halo → 1990/2000", base: 18, multiplier: 1, category: "intermediate"},
-            {name: "Halo → Airflare", base: 33, multiplier: 1.5, category: "advanced"},
+            {name: "Windmill → 1990/2000", base: 16, multiplier: 1.8, category: "intermediate"},
             {name: "Flare → 1990/2000", base: 18, multiplier: 1.8, category: "intermediate"},
-            {name: "Flare → Airflare", base: 33, multiplier: 2, category: "advanced"},
             {name: "Handstand/1990/2000 → Flare", base: 18, multiplier: 2, category: "intermediate"},
+            
+            // Advanced transitions (>30 pts)
+            {name: "Swipe → Elbow Airflare", base: 31, multiplier: 1, category: "advanced"},
+            {name: "Swipe → Airflare", base: 31, multiplier: 1, category: "advanced"},
+            {name: "Headspin → Elbow Airflare", base: 32.5, multiplier: 1, category: "advanced"},
+            {name: "Halo → Elbow Airflare", base: 33, multiplier: 1, category: "advanced"},
+            {name: "Flare → Elbow Airflare", base: 33, multiplier: 1, category: "advanced"},
+            {name: "Handstand/1990/2000 → Elbow Airflare", base: 45, multiplier: 1, category: "advanced"},
             {name: "Handstand/1990/2000 → Airflare", base: 45, multiplier: 1, category: "advanced"},
-            {name: "Handstand/1990/2000 → Elbow AF", base: 45, multiplier: 1, category: "advanced"},
-            {name: "Elbow AF → Airflare", base: 60, multiplier: 2, category: "advanced"},
-            {name: "Elbow AF → Assisted Elbow Flash", base: 60, multiplier: 2, category: "advanced"},
-            {name: "Elbow AF → Real Elbow Flash", base: 60, multiplier: 2.5, category: "advanced"}
+            {name: "Headspin → Airflare", base: 32.5, multiplier: 1.5, category: "advanced"},
+            {name: "Halo → Airflare", base: 33, multiplier: 1.5, category: "advanced"},
+            {name: "Windmill → Elbow Airflare", base: 31, multiplier: 2, category: "advanced"},
+            {name: "Windmill → Airflare", base: 31, multiplier: 2, category: "advanced"},
+            {name: "Flare → Airflare", base: 33, multiplier: 2, category: "advanced"},
+            {name: "Elbow Airflare → Airflare", base: 60, multiplier: 2, category: "advanced"},
+            {name: "Elbow Airflare → Assisted Elbow Flash", base: 60, multiplier: 2, category: "advanced"},
+            {name: "Elbow Airflare → Real Elbow Flash", base: 60, multiplier: 2.5, category: "advanced"}
         ];
 
         function buildPowerMovesTable() {
@@ -976,7 +1005,7 @@
             const categories = { 
                 basic: { completed: 0, total: 5, moves: [] }, 
                 intermediate: { completed: 0, total: 5, moves: [] }, 
-                advanced: { completed: 0, total: 6, moves: [] } 
+                advanced: { completed: 0, total: 4, moves: [] } 
             };
             
             // Check move completion and build lists
@@ -1053,9 +1082,9 @@
                 const points = transition.base * transition.multiplier;
                 let category;
                 
-                if (points <= 20) {
+                if (points <= 10) {
                     category = 'basic';
-                } else if (points <= 36) {
+                } else if (points <= 30) {
                     category = 'intermediate';
                 } else {
                     category = 'advanced';
@@ -1081,7 +1110,7 @@
             // Update tooltips for transitions
             const basicTransitionTooltip = document.querySelector('#basicTransitionsCount').closest('.stat-row').querySelector('.info-tooltip');
             basicTransitionTooltip.innerHTML = `
-                <div><strong>Basic Transitions (0-20 pts each):</strong></div>
+                <div><strong>Basic Transitions (0-10 pts each):</strong></div>
                 ${transitionCategories.basic.transitions.map(transition => 
                     `<div class="${transition.completed ? 'tooltip-completed' : ''}">• ${transition.name} (${transition.points} pts)</div>`
                 ).join('')}
@@ -1089,7 +1118,7 @@
             
             const intermediateTransitionTooltip = document.querySelector('#intermediateTransitionsCount').closest('.stat-row').querySelector('.info-tooltip');
             intermediateTransitionTooltip.innerHTML = `
-                <div><strong>Intermediate Transitions (21-36 pts each):</strong></div>
+                <div><strong>Intermediate Transitions (11-30 pts each):</strong></div>
                 ${transitionCategories.intermediate.transitions.map(transition => 
                     `<div class="${transition.completed ? 'tooltip-completed' : ''}">• ${transition.name} (${transition.points} pts)</div>`
                 ).join('')}
@@ -1097,7 +1126,7 @@
             
             const advancedTransitionTooltip = document.querySelector('#advancedTransitionsCount').closest('.stat-row').querySelector('.info-tooltip');
             advancedTransitionTooltip.innerHTML = `
-                <div><strong>Advanced Transitions (>36 pts each):</strong></div>
+                <div><strong>Advanced Transitions (>30 pts each):</strong></div>
                 ${transitionCategories.advanced.transitions.map(transition => 
                     `<div class="${transition.completed ? 'tooltip-completed' : ''}">• ${transition.name} (${transition.points} pts)</div>`
                 ).join('')}
